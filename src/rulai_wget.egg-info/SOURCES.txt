@@ -1,0 +1,10 @@
+README.md
+setup.py
+src/mwget/__init__.py
+src/mwget/command.py
+src/mwget/multiwget.py
+src/rulai_wget.egg-info/PKG-INFO
+src/rulai_wget.egg-info/SOURCES.txt
+src/rulai_wget.egg-info/dependency_links.txt
+src/rulai_wget.egg-info/entry_points.txt
+src/rulai_wget.egg-info/top_level.txt

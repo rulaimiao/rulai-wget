@@ -1,0 +1,3 @@
+[console_scripts]
+mwget = mwget.__init__:main
+
