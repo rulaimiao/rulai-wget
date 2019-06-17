@@ -32,6 +32,8 @@ def main(**kwargs):
 
     parser.add_argument("-h", "--help", action="store_true", help="获取帮助文档")
 
+    parser.add_argument("-c", "--cookie", help="Cookie url")
+
     args = parser.parse_args()
     debug = False
     save_path = None
@@ -42,26 +44,36 @@ def main(**kwargs):
     urls_list = []
     if args.URL:
         urls_list.extend(args.URL)
-    
+
+    url = urls_list[0]
+    g = FileMwget(url)
+
     if args.debug:
         debug = True
+        g.debug = debug
     if args.file_name:
         save_path=args.file_name
+        g.save_path = save_path
     if args.retry_times:
         retry_times = int(args.retry_times)
+        g.retry_times = retry_times
     if args.complicate_num:
         complicate_num = int(args.complicate_num)
+        g.complicate_num = complicate_num
     if args.chunk_size:
         chunk_size = int(args.chunk_size)
+        g.chunk_size = chunk_size
     if args.referer:
         referer = args.referer
+        g.referer = referer
+    if args.cookie:
+        cookie = args.cookie
+        g.cookie = cookie
     if args.help or not urls_list:
         parser.print_help()
         sys.exit()
 
-    for url in urls_list:
-        g = FileMwget(url,debug=debug,save_path=save_path)
-        g.run()
+    g.run()
     
 
 if __name__ == "__main__":

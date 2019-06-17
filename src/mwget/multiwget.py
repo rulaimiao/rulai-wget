@@ -27,12 +27,12 @@ class FileMwget():
         self.referer = None
         self.complicate_num = 100
         self.chunk_size = 256
+        self.cookie = None
         self.headers = {
             'Accept': '*/*',
             'Accept-Language': 'zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4',
             'Connection': 'keep-alive',
             'DNT': '1',
-            
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.45 Safari/537.36'
         }
 
@@ -115,6 +115,10 @@ class FileMwget():
     def make_a_request(self):
         o = parse.urlparse(self.url)
         self.headers['Host'] = o.netloc
+        if self.referer:
+            self.headers['Referer'] = self.referer
+        if self.cookie:
+            self.headers['Cookie'] = self.cookie
         
         return request.Request(self.url, headers=self.headers)
 
